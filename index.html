@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="First Blood Harddisk — an independent visual discography of physical releases associated with Simon Kvamm.">
+<title>First Blood Harddisk</title>
+<style>
+:root{color-scheme:light;font-family:Arial,Helvetica,sans-serif;color:#181818;background:white}
+*{box-sizing:border-box}body{margin:0}a{color:inherit}header,main,footer{max-width:1140px;margin:auto;padding-left:28px;padding-right:28px}
+header{padding-top:30px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;border-bottom:1px solid #e8e8e8;padding-bottom:22px}
+.brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;font-weight:700}
+nav{display:flex;gap:20px;flex-wrap:wrap}nav a{font-size:12px;text-decoration:none;color:#666}
+.hero{padding:95px 0 88px;border-bottom:1px solid #e8e8e8}h1{font-size:clamp(42px,7vw,86px);font-weight:400;letter-spacing:-.065em;line-height:1.04;margin:0 0 20px}
+.hero p{font-size:15px;color:#666;margin:0}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:42px 0 28px}
+h2{font-size:16px;font-weight:500;margin:0}.muted{color:#888;font-size:12px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px}.filters button{background:white;border:1px solid #dedede;padding:9px 14px;cursor:pointer;font-size:12px}
+.filters button[aria-pressed=true]{background:#161616;color:white;border-color:#161616}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px;padding-bottom:100px}
+.release{border:0;background:transparent;text-align:left;padding:0;cursor:pointer}.cover{aspect-ratio:1;background:#f4f4f4;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:11px;letter-spacing:.05em}
+.release strong{display:block;font-size:14px;font-weight:500;margin-top:13px}.release small{display:block;color:#888;font-size:12px;margin-top:6px}
+.empty{grid-column:1/-1;padding:75px 20px;background:#fafafa;text-align:center;color:#777;font-size:14px}
+footer{border-top:1px solid #e8e8e8;padding-top:25px;padding-bottom:40px;color:#777;font-size:11px;line-height:1.8}
+footer a{text-decoration:underline;text-underline-offset:3px}
+dialog{border:1px solid #ddd;max-width:600px;width:calc(100% - 32px);padding:28px}dialog::backdrop{background:#0008}
+.close{float:right;background:none;border:0;font-size:22px;cursor:pointer}
+@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:65px 0}.top{align-items:flex-start;flex-direction:column}nav{gap:12px}}
+</style>
+</head>
+<body>
+<header><div class="top"><a class="brand" href="./">First Blood Harddisk</a><nav aria-label="Main navigation"><a href="#discography">Discography</a><a href="#about">About</a></nav></div></header>
+<main>
+<section class="hero"><h1>First Blood<br>Harddisk</h1><p>A visual discography of Simon Kvamm</p></section>
+<section id="discography" aria-labelledby="discography-heading">
+<div class="section-heading"><h2 id="discography-heading">Discography</h2><span class="muted">Chronological archive</span></div>
+<div class="filters" id="filters" aria-label="Filter releases"></div>
+<div class="grid" id="releases"></div>
+</section>
+</main>
+<footer id="about"><p>An independent, non-commercial discography project. All photographs are original photographs of items in a private collection. Not affiliated with or endorsed by the artists or record labels. Rights to cover artwork remain with their respective owners.</p><p>For questions regarding the archive, please <a href="mailto:">contact the archive</a> (contact address to be added).</p></footer>
+<dialog id="details"><button class="close" aria-label="Close details" onclick="document.getElementById('details').close()">×</button><div id="detail-content"></div></dialog>
+<script>
+// Future CMS integration: replace this array with entries from the content system.
+// Example format (use your own photos, and verify metadata before publishing):
+// {title:"Album title", artist:"Nephew", year:2004, cover:"images/photo.jpg", editions:[{format:"CD",catalogue:"...",photos:["images/front.jpg"]}]}
+const releases = [];
+const artists = ["All","Nephew","De Eneste To","Hugorm","Solo","Other"];
+let selected = "All";
+const filters = document.getElementById("filters");
+const gallery = document.getElementById("releases");
+function render(){
+  filters.replaceChildren();
+  for(const artist of artists){
+    const button=document.createElement("button");button.textContent=artist;
+    button.setAttribute("aria-pressed",String(selected===artist));
+    button.onclick=()=>{selected=artist;render()};filters.append(button);
+  }
+  gallery.replaceChildren();
+  const items=releases.filter(x=>selected==="All"||x.artist===selected).sort((a,b)=>a.year-b.year||a.title.localeCompare(b.title));
+  if(!items.length){const note=document.createElement("div");note.className="empty";note.textContent="The collection is being documented. Original photographs and release details will appear here.";gallery.append(note);return;}
+  for(const item of items){
+    const button=document.createElement("button");button.className="release";
+    const cover=document.createElement("div");cover.className="cover";
+    if(item.cover){const img=document.createElement("img");img.src=item.cover;img.alt=item.title+" cover";img.loading="lazy";img.style.cssText="width:100%;height:100%;object-fit:contain";cover.append(img)}
+    else cover.textContent="PHOTOGRAPH PENDING";
+    const name=document.createElement("strong");name.textContent=item.title;
+    const meta=document.createElement("small");meta.textContent=item.artist+" / "+item.year;
+    button.append(cover,name,meta);
+    button.onclick=()=>openDetails(item);gallery.append(button);
+  }
+}
+function openDetails(item){
+ const content=document.getElementById("detail-content");content.replaceChildren();
+ const h=document.createElement("h2");h.style.margin="12px 0";h.textContent=item.title;
+ const p=document.createElement("p");p.textContent=item.artist+" · "+item.year;content.append(h,p);
+ for(const edition of item.editions||[]){
+   const heading=document.createElement("h3");heading.textContent=edition.format+(edition.catalogue?" · "+edition.catalogue:"");content.append(heading);
+   for(const src of edition.photos||[]){const img=document.createElement("img");img.src=src;img.alt=item.title+" "+edition.format;img.style.cssText="max-width:100%;height:auto;margin-bottom:12px";content.append(img)}
+ }
+ document.getElementById("details").showModal();
+}
+render();
+</script>
+</body>
+</html>

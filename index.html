@@ -22,9 +22,9 @@ h2{font-size:16px;font-weight:500;margin:0}.muted{color:#888;font-size:12px}
 .empty{grid-column:1/-1;padding:75px 20px;background:#fafafa;text-align:center;color:#777;font-size:14px}
 footer{border-top:1px solid #e8e8e8;padding-top:25px;padding-bottom:40px;color:#777;font-size:11px;line-height:1.8}
 footer a{text-decoration:underline;text-underline-offset:3px}
-dialog{border:1px solid #ddd;max-width:760px;width:calc(100% - 32px);padding:28px}dialog::backdrop{background:#0008}
-.close{float:right;background:none;border:0;font-size:22px;cursor:pointer}
-@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:65px 0}.top{align-items:flex-start;flex-direction:column}nav{gap:12px}}
+dialog{border:1px solid #ddd;max-width:1050px;width:calc(100% - 32px);padding:clamp(18px,3vw,42px);max-height:92vh;overflow:auto}dialog::backdrop{background:#0008}
+.detail-head{padding:4px 0 25px;border-bottom:1px solid #e8e8e8;margin-bottom:28px}.detail-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#888;margin:0 0 14px}.detail-title{font-size:clamp(38px,6vw,68px);letter-spacing:-.055em;font-weight:400;margin:0 0 10px}.detail-meta{color:#777;font-size:13px;margin:0}.photo-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}.photo-pair figure{margin:0}.photo-pair img{display:block;width:100%;height:auto;background:#f5f5f5}.photo-pair figcaption{font-size:12px;color:#888;margin-top:10px}.detail-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:28px;padding-top:22px;border-top:1px solid #e8e8e8;font-size:13px;color:#666}.detail-bottom a{text-underline-offset:3px}.close{float:right;background:none;border:0;font-size:22px;cursor:pointer}
+@media(max-width:750px){.photo-pair{grid-template-columns:1fr}.detail-bottom{flex-direction:column;gap:8px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding:65px 0}.top{align-items:flex-start;flex-direction:column}nav{gap:12px}}
 </style>
 </head>
 <body>
@@ -75,14 +75,29 @@ function render(){
 }
 function openDetails(item){
  const content=document.getElementById("detail-content");content.replaceChildren();
- const h=document.createElement("h2");h.style.margin="12px 0";h.textContent=item.title;
- const p=document.createElement("p");p.textContent=item.artist+" · "+(item.date||item.year)+(item.label?" · "+item.label:"");content.append(h,p);
- for(const edition of item.editions||[]){
-   const heading=document.createElement("h3");heading.textContent=edition.format+(edition.catalogue?" · "+edition.catalogue:"");content.append(heading);
-   for(const src of edition.photos||[]){const img=document.createElement("img");img.src=src;img.alt=item.title+" "+edition.format;img.style.cssText="max-width:100%;height:auto;margin-bottom:12px";content.append(img)}
+ const head=document.createElement("div");head.className="detail-head";
+ const kicker=document.createElement("p");kicker.className="detail-kicker";kicker.textContent=item.artist;
+ const title=document.createElement("h2");title.className="detail-title";title.textContent=item.title;
+ const meta=document.createElement("p");meta.className="detail-meta";meta.textContent=(item.date||item.year)+" · "+(item.editions?.[0]?.format||"Release");
+ head.append(kicker,title,meta);content.append(head);
+ const edition=item.editions?.[0];
+ if(edition){
+   const photos=document.createElement("div");photos.className="photo-pair";
+   for(const [i,src] of (edition.photos||[]).entries()){
+     const figure=document.createElement("figure"),img=document.createElement("img"),caption=document.createElement("figcaption");
+     img.src=src;img.alt=item.title+(i===0?" – front cover":" – back cover");img.loading="lazy";
+     caption.textContent=i===0?"Front":"Back";figure.append(img,caption);photos.append(figure);
+   }
+   content.append(photos);
+   const bottom=document.createElement("div");bottom.className="detail-bottom";
+   const info=document.createElement("span");info.textContent=[item.label,edition.format,edition.catalogue].filter(Boolean).join(" · ");
+   const discogs=document.createElement("a");discogs.href="https://www.discogs.com/search/?q="+encodeURIComponent(item.artist+" "+item.title)+"&type=release";
+   discogs.target="_blank";discogs.rel="noopener noreferrer";discogs.textContent="Explore other editions on Discogs ↗";
+   bottom.append(info,discogs);content.append(bottom);
  }
  document.getElementById("details").showModal();
 }
+
 render();
 </script>
 </body>

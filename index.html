@@ -43,12 +43,8 @@ dialog{border:1px solid #ddd;max-width:1050px;width:calc(100% - 32px);padding:cl
 // Future CMS integration: replace this array with entries from the content system.
 // Example format (use your own photos, and verify metadata before publishing):
 // {title:"Album title", artist:"Nephew", year:2004, cover:"images/photo.jpg", editions:[{format:"CD",catalogue:"...",photos:["images/front.jpg"]}]}
-const releases = [{
-  title:"USADSB", artist:"Nephew", year:2004, date:"30 June 2004",
-  label:"Copenhagen Records", cover:"usadsb-forside.jpg",
-  editions:[{format:"CD",catalogue:"CPHREC0004",photos:["usadsb-forside.jpg","usadsb-bagside.jpg"]}]
-}];
-const artists = ["All","Nephew","De Eneste To","Hugorm","Solo","Other"];
+let releases = [];
+const artists = ["All","Nephew","De Eneste To","Hugorm","Solo","Drengene fra Angora","Other"];
 let selected = "All";
 const filters = document.getElementById("filters");
 const gallery = document.getElementById("releases");
@@ -60,7 +56,7 @@ function render(){
     button.onclick=()=>{selected=artist;render()};filters.append(button);
   }
   gallery.replaceChildren();
-  const items=releases.filter(x=>selected==="All"||x.artist===selected).sort((a,b)=>a.year-b.year||a.title.localeCompare(b.title));
+  const items=releases.filter(x=>selected==="All"||x.artist===selected).sort((a,b)=>a.sortDate.localeCompare(b.sortDate)||a.title.localeCompare(b.title));
   if(!items.length){const note=document.createElement("div");note.className="empty";note.textContent="The collection is being documented. Original photographs and release details will appear here.";gallery.append(note);return;}
   for(const item of items){
     const button=document.createElement("button");button.className="release";
@@ -68,7 +64,7 @@ function render(){
     if(item.cover){const img=document.createElement("img");img.src=item.cover;img.alt=item.title+" cover";img.loading="lazy";img.style.cssText="width:100%;height:100%;object-fit:contain";cover.append(img)}
     else cover.textContent="PHOTOGRAPH PENDING";
     const name=document.createElement("strong");name.textContent=item.title;
-    const meta=document.createElement("small");meta.textContent=item.artist+" / "+item.year;
+    const meta=document.createElement("small");meta.textContent=(item.displayArtist||item.artist)+" / "+item.year;
     button.append(cover,name,meta);
     button.onclick=()=>openDetails(item);gallery.append(button);
   }
@@ -76,7 +72,7 @@ function render(){
 function openDetails(item){
  const content=document.getElementById("detail-content");content.replaceChildren();
  const head=document.createElement("div");head.className="detail-head";
- const kicker=document.createElement("p");kicker.className="detail-kicker";kicker.textContent=item.artist;
+ const kicker=document.createElement("p");kicker.className="detail-kicker";kicker.textContent=item.displayArtist||item.artist;
  const title=document.createElement("h2");title.className="detail-title";title.textContent=item.title;
  const meta=document.createElement("p");meta.className="detail-meta";meta.textContent=(item.date||item.year)+" · "+(item.editions?.[0]?.format||"Release");
  head.append(kicker,title,meta);content.append(head);
@@ -91,13 +87,14 @@ function openDetails(item){
    content.append(photos);
    const bottom=document.createElement("div");bottom.className="detail-bottom";
    const info=document.createElement("span");info.textContent=[item.label,edition.format,edition.catalogue].filter(Boolean).join(" · ");
-   const discogs=document.createElement("a");discogs.href="https://www.discogs.com/search/?q="+encodeURIComponent(item.artist+" "+item.title)+"&type=release";
+   const discogs=document.createElement("a");discogs.href="https://www.discogs.com/search/?q="+encodeURIComponent((item.displayArtist||item.artist)+" "+item.title)+"&type=release";
    discogs.target="_blank";discogs.rel="noopener noreferrer";discogs.textContent="Explore other editions on Discogs ↗";
    bottom.append(info,discogs);content.append(bottom);
  }
  document.getElementById("details").showModal();
 }
 
+fetch("albums.json").then(response=>{if(!response.ok)throw new Error("Unable to load album data");return response.json()}).then(data=>{releases=data;render()}).catch(error=>{console.error(error);gallery.textContent="The album archive could not be loaded. Please refresh the page."});
 render();
 </script>
 </body>

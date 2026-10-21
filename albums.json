@@ -1,0 +1,117 @@
+[
+  {
+    "title": "USADSB",
+    "artist": "Nephew",
+    "year": 2004,
+    "date": "30 June 2004",
+    "sortDate": "2004-06-30",
+    "label": "Copenhagen Records",
+    "cover": "usadsb-forside.jpg",
+    "editions": [
+      {
+        "format": "CD",
+        "catalogue": "CPHREC0004",
+        "photos": [
+          "usadsb-forside.jpg",
+          "usadsb-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Drengene fra Angora",
+    "artist": "Drengene fra Angora",
+    "year": 2004,
+    "date": "2004",
+    "sortDate": "2004-12-31",
+    "label": "DR / Playground Music",
+    "cover": "drengene-fra-angora-forside.jpg",
+    "editions": [
+      {
+        "format": "CD",
+        "catalogue": "",
+        "photos": [
+          "drengene-fra-angora-forside.jpg",
+          "drengene-fra-angora-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Interkom Kom Ind",
+    "artist": "Nephew",
+    "year": 2006,
+    "date": "6 October 2006",
+    "sortDate": "2006-10-06",
+    "label": "Copenhagen Records",
+    "cover": "interkom-kom-ind-forside.jpg",
+    "editions": [
+      {
+        "format": "CD",
+        "catalogue": "CPHREC0065",
+        "photos": [
+          "interkom-kom-ind-forside.jpg",
+          "interkom-kom-ind-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "07.07.07",
+    "artist": "Nephew",
+    "year": 2007,
+    "date": "7 November 2007",
+    "sortDate": "2007-11-07",
+    "label": "Copenhagen Records",
+    "cover": "070707-forside.jpg",
+    "editions": [
+      {
+        "format": "CD + DVD",
+        "catalogue": "CPHREC 0089",
+        "photos": [
+          "070707-forside.jpg",
+          "070707-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "DanmarkDenmark",
+    "artist": "Nephew",
+    "year": 2009,
+    "date": "5 June 2009",
+    "sortDate": "2009-06-05",
+    "label": "Copenhagen Records",
+    "cover": "danmarkdenmark-forside.jpg",
+    "editions": [
+      {
+        "format": "CD",
+        "catalogue": "CPHREC 0140-2",
+        "photos": [
+          "danmarkdenmark-forside.jpg",
+          "danmarkdenmark-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Vandmand",
+    "artist": "Solo",
+    "displayArtist": "Simon Kvamm",
+    "year": 2017,
+    "date": "27 January 2017",
+    "sortDate": "2017-01-27",
+    "label": "Genlyd / Sony Music",
+    "cover": "vandmand-forside.jpg",
+    "editions": [
+      {
+        "format": "CD",
+        "catalogue": "",
+        "photos": [
+          "vandmand-forside.jpg",
+          "vandmand-bagside.jpg"
+        ]
+      }
+    ]
+  }
+]

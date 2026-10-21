@@ -16,7 +16,8 @@
           "usadsb-bagside.jpg"
         ]
       }
-    ]
+    ],
+    "type": "Album"
   },
   {
     "title": "Drengene fra Angora",
@@ -35,7 +36,8 @@
           "drengene-fra-angora-bagside.jpg"
         ]
       }
-    ]
+    ],
+    "type": "Album"
   },
   {
     "title": "Interkom Kom Ind",
@@ -54,7 +56,8 @@
           "interkom-kom-ind-bagside.jpg"
         ]
       }
-    ]
+    ],
+    "type": "Album"
   },
   {
     "title": "07.07.07",
@@ -73,7 +76,8 @@
           "070707-bagside.jpg"
         ]
       }
-    ]
+    ],
+    "type": "Album"
   },
   {
     "title": "DanmarkDenmark",
@@ -92,7 +96,8 @@
           "danmarkdenmark-bagside.jpg"
         ]
       }
-    ]
+    ],
+    "type": "Album"
   },
   {
     "title": "Vandmand",
@@ -110,6 +115,87 @@
         "photos": [
           "vandmand-forside.jpg",
           "vandmand-bagside.jpg"
+        ]
+      }
+    ],
+    "type": "Album"
+  },
+  {
+    "title": "En Wannabe Darth Vader",
+    "artist": "Nephew",
+    "year": 2004,
+    "date": "26 April 2004",
+    "sortDate": "2004-04-26",
+    "type": "Single",
+    "label": "Copenhagen Records",
+    "cover": "en-wannabe-darth-vader-forside.jpg",
+    "editions": [
+      {
+        "format": "Promotional CD",
+        "catalogue": "CPHPRO 03",
+        "photos": [
+          "en-wannabe-darth-vader-forside.jpg",
+          "en-wannabe-darth-vader-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Superliga",
+    "artist": "Nephew",
+    "year": 2004,
+    "date": "9 August 2004",
+    "sortDate": "2004-08-09",
+    "type": "Single",
+    "label": "Copenhagen Records",
+    "cover": "superliga-forside.jpg",
+    "editions": [
+      {
+        "format": "Promotional CD",
+        "catalogue": "CPHPRO 08",
+        "photos": [
+          "superliga-forside.jpg",
+          "superliga-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Worst/Best Case Scenario",
+    "artist": "Nephew",
+    "year": 2005,
+    "date": "4 April 2005",
+    "sortDate": "2005-04-04",
+    "type": "Single",
+    "label": "Copenhagen Records",
+    "cover": "worst-best-case-scenario-forside.jpg",
+    "editions": [
+      {
+        "format": "Promotional CD",
+        "catalogue": "CPHPRO 29",
+        "photos": [
+          "worst-best-case-scenario-forside.jpg",
+          "worst-best-case-scenario-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Byens Hotel",
+    "artist": "Nephew",
+    "year": 2005,
+    "date": "2005",
+    "sortDate": "2005-12-31",
+    "type": "Single",
+    "label": "Copenhagen Records",
+    "cover": "byens-hotel-forside.jpg",
+    "editions": [
+      {
+        "format": "Promotional CD",
+        "catalogue": "CPHPRO 41",
+        "photos": [
+          "byens-hotel-forside.jpg",
+          "byens-hotel-bagside.jpg"
         ]
       }
     ]

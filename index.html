@@ -48,7 +48,7 @@ let releases = [];
 const artists = ["All","Nephew","De Eneste To","Hugorm","Solo","Drengene fra Angora","Other"];
 let selected = "All";
 let selectedType = "All releases";
-const releaseTypes = ["All releases", "Albums", "Singles & EPs"];
+const releaseTypes = ["All releases", "Albums", "Singles & EPs", "Live"];
 const typeFilters = document.getElementById("type-filters");
 const filters = document.getElementById("filters");
 const gallery = document.getElementById("releases");
@@ -66,7 +66,7 @@ function render(){
     button.onclick=()=>{selectedType=type;render()};typeFilters.append(button);
   }
   gallery.replaceChildren();
-  const items=releases.filter(x=>(selected==="All"||x.artist===selected)&&(selectedType==="All releases"||(selectedType==="Albums"?x.type!=="Single":x.type==="Single"))).sort((a,b)=>a.sortDate.localeCompare(b.sortDate)||a.title.localeCompare(b.title));
+  const items=releases.filter(x=>(selected==="All"||x.artist===selected)&&(selectedType==="All releases"||(selectedType==="Albums"?x.type==="Album":selectedType==="Live"?x.type==="Live":["Single","EP"].includes(x.type)))).sort((a,b)=>a.sortDate.localeCompare(b.sortDate)||a.title.localeCompare(b.title));
   if(!items.length){const note=document.createElement("div");note.className="empty";note.textContent="The collection is being documented. Original photographs and release details will appear here.";gallery.append(note);return;}
   for(const item of items){
     const button=document.createElement("button");button.className="release";
@@ -74,7 +74,7 @@ function render(){
     if(item.cover){const img=document.createElement("img");img.src=item.cover;img.alt=item.title+" cover";img.loading="lazy";img.style.cssText="width:100%;height:100%;object-fit:contain";cover.append(img)}
     else cover.textContent="PHOTOGRAPH PENDING";
     const name=document.createElement("strong");name.textContent=item.title;
-    const meta=document.createElement("small");meta.textContent=(item.displayArtist||item.artist)+" / "+item.year+(item.type==="Single"?" · Single":"");
+    const meta=document.createElement("small");meta.textContent=(item.displayArtist||item.artist)+" / "+item.year+(["Single","EP","Live"].includes(item.type)?" · "+item.type:"");
     button.append(cover,name,meta);
     button.onclick=()=>openDetails(item);gallery.append(button);
   }
@@ -100,6 +100,7 @@ function openDetails(item){
    const discogs=document.createElement("a");discogs.href="https://www.discogs.com/search/?q="+encodeURIComponent((item.displayArtist||item.artist)+" "+item.title)+"&type=release";
    discogs.target="_blank";discogs.rel="noopener noreferrer";discogs.textContent="Explore other editions on Discogs ↗";
    bottom.append(info,discogs);content.append(bottom);
+   if(item.note){const note=document.createElement("p");note.className="muted";note.style.marginTop="15px";note.textContent=item.note;content.append(note);}
  }
  document.getElementById("details").showModal();
 }

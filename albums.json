@@ -69,15 +69,15 @@
     "cover": "070707-forside.jpg",
     "editions": [
       {
-        "format": "CD + DVD",
-        "catalogue": "CPHREC 0089",
+        "format": "Special Edition · CD + 2 DVDs + photo book",
+        "catalogue": "CPHREC0090",
         "photos": [
           "070707-forside.jpg",
           "070707-bagside.jpg"
         ]
       }
     ],
-    "type": "Album"
+    "type": "Live"
   },
   {
     "title": "DanmarkDenmark",
@@ -196,6 +196,90 @@
         "photos": [
           "byens-hotel-forside.jpg",
           "byens-hotel-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Folk skal bare holde deres kæft",
+    "artist": "Hugorm",
+    "year": 2020,
+    "date": "24 January 2020",
+    "sortDate": "2020-01-24",
+    "type": "EP",
+    "label": "Warner Music Denmark",
+    "cover": "folk-skal-bare-holde-deres-kaeft-forside.jpg",
+    "note": "Signed copy – three signatures on front cover.",
+    "editions": [
+      {
+        "format": "Vinyl EP",
+        "catalogue": "",
+        "photos": [
+          "folk-skal-bare-holde-deres-kaeft-forside.jpg",
+          "folk-skal-bare-holde-deres-kaeft-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Kom Vi Flygter",
+    "artist": "Hugorm",
+    "year": 2021,
+    "date": "2021",
+    "sortDate": "2021-12-31",
+    "type": "Album",
+    "label": "Warner Music Denmark",
+    "cover": "kom-vi-flygter-forside.jpg",
+    "note": "Signed copy – three signatures on front cover.",
+    "editions": [
+      {
+        "format": "Vinyl LP",
+        "catalogue": "",
+        "photos": [
+          "kom-vi-flygter-forside.jpg",
+          "kom-vi-flygter-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Tro, Hug & Kærlighed",
+    "artist": "Hugorm",
+    "year": 2022,
+    "date": "2022",
+    "sortDate": "2022-12-31",
+    "type": "Album",
+    "label": "Warner Music Denmark",
+    "cover": "tro-hug-kaerlighed-forside.jpg",
+    "note": "Signed copy – three signatures on front cover.",
+    "editions": [
+      {
+        "format": "Vinyl LP",
+        "catalogue": "",
+        "photos": [
+          "tro-hug-kaerlighed-forside.jpg",
+          "tro-hug-kaerlighed-bagside.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Drømmehug",
+    "artist": "Hugorm",
+    "year": 2024,
+    "date": "2024",
+    "sortDate": "2024-12-31",
+    "type": "Album",
+    "label": "",
+    "cover": "droemmehug-forside.jpg",
+    "note": "Signed copy – three signatures on front cover.",
+    "editions": [
+      {
+        "format": "Vinyl LP",
+        "catalogue": "",
+        "photos": [
+          "droemmehug-forside.jpg",
+          "droemmehug-bagside.jpg"
         ]
       }
     ]

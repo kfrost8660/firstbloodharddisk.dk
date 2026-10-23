@@ -283,5 +283,26 @@
         ]
       }
     ]
+  },
+  {
+    "title": "OrdensPoliti",
+    "artist": "Nephew",
+    "year": 2004,
+    "date": "2004",
+    "sortDate": "2004-12-31",
+    "type": "Single",
+    "label": "Copenhagen Records",
+    "cover": "ordenspoliti-forside.jpg",
+    "note": "Promotional CD single.",
+    "editions": [
+      {
+        "format": "Promotional CD",
+        "catalogue": "CPHPRO 18",
+        "photos": [
+          "ordenspoliti-forside.jpg",
+          "ordenspoliti-bagside.jpg"
+        ]
+      }
+    ]
   }
 ]
